@@ -1,0 +1,29 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if user.is_authenticated %}  
+    
+    {% endif %}
+    
+    <div class="profile">
+        <h1 class="profile_title">@{{ user.username }}</h1>
+        <div class="follow_div">
+            <h6 class="follow_count">122302 Followers</h6>
+            <button class="follow_button">Follow</button>
+        </div>
+    </div>
+
+    {% for post in user.posts %}
+    <div class="post">
+        <a class="post_author" href="{% url 'profile' userid=post.author.id %}">{{post.author}}</a>
+        <p class="post_content">{{post.content}}</p>
+        <p class="post_timestamp">{{post.timestamp}}</p>
+        <div class="like_div">
+            <p class="like_num">{{post.likes}}</p>
+            <button class="like_button">&hearts;</button>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}
